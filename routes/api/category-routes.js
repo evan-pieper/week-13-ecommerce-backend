@@ -3,31 +3,24 @@ const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint
 
-router.get('/', (req, res) => {
-	Category.findAll({  // find all of the categories
-		include: [Product] // include its associated Products
-	}).then((categories) => {
-		//console.log(categories);
-		res.status(200).json(categories); // if no error, send 200 status code and json of the categories
-	}).catch((err) => {
-		console.log(err);
-		res.status(500).json(err);
-		res.json(err);
-	});
+router.get('/', async(req, res) => { // find all categories
+	try{
+		const allCategories = await Category.findAll({
+			include: [Product]
+		});
+		res.status(200).json(allCategories);
+	} catch (err) {res.status(500).json(err);}
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async(req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
-	Category.findByPk(req.params.id, {
-		include: [Product]
-	}).then((category) => {
-		//console.log(category);
-		res.json(category);
-	}).catch((err) => {
-		console.log(err);
-		res.status(500).json(err);
-	});
+	try{
+		const oneCategory = await Category.findByPk(req.params.id, {
+			include: [Product]
+		});
+		res.status(200).json(oneCategory);
+	} catch (err) {res.status(500).json(err);}
 });
 
 router.post('/', async(req, res) => {
