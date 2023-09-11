@@ -31,6 +31,13 @@ Product.init(
         key: 'id'
       }
     },
+    /*product_tag: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'product_tag',
+        key: 'id'
+      }
+    },*/
   },
   {
     sequelize,

@@ -10,17 +10,18 @@ Category.init(
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     category_name: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
-  /*  products: {
+    /*product: {
       type: DataTypes.INTEGER,
       references: {
         model: 'product',
         key: 'id'
-      }
+      },
+      //allowNull: true,
     }, */
   },
   {
